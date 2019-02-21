@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 0
-    m_BakeBackend: 1
+    m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 1000
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000000, guid: 56eaed54fc64aa9499cca899977149b2,
+  m_LightingDataAsset: {fileID: 112000000, guid: c5a2185c784a7474ca0ada21b4656326,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -3152,6 +3152,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bbb3a38742169a4abd045d20e527d9d, type: 3}
+--- !u!1 &1693471985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693471987}
+  - component: {fileID: 1693471986}
+  m_Layer: 0
+  m_Name: SubFadeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1693471986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693471985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7bbbde8ae6f234db60f26ab1a0525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerObjects:
+  - {fileID: 164235943}
+--- !u!4 &1693471987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693471985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 441.15567, y: 192.4425, z: 7.83395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1720990296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 7bbb3a38742169a4abd045d20e527d9d,
@@ -3573,9 +3618,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: triggerObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 164235943}
     - target: {fileID: 1154936020832994, guid: 9736abc94d39078408127f0ca73ee3ee, type: 3}
       propertyPath: m_Name
       value: SimpleFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154936020832994, guid: 9736abc94d39078408127f0ca73ee3ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224345906677971782, guid: 9736abc94d39078408127f0ca73ee3ee,
         type: 3}
@@ -3682,10 +3735,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6962747387273880919, guid: 9736abc94d39078408127f0ca73ee3ee,
-        type: 3}
-      propertyPath: triggerObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 164235943}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9736abc94d39078408127f0ca73ee3ee, type: 3}

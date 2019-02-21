@@ -3,7 +3,7 @@ TO DO: add position recording function
 TO DO:
 
 ## Version Required:
-Unity 2018 3.4f1 or above
+Unity 2018 3.6f1 or above
 (You can use Unity Hub to manage versions on your computer) -- [Go to page of Unity Hub](https://store.unity.com/download?ref=personal).
 
 ## Libraries Reference:

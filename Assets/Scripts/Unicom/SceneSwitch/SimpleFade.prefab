@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6962747387273880920}
   - component: {fileID: 6962747387273880923}
   - component: {fileID: 114603584621507618}
-  - component: {fileID: 6962747387273880919}
   m_Layer: 5
   m_Name: SimpleFade
   m_TagString: Untagged
@@ -119,20 +118,6 @@ MonoBehaviour:
   fadeOutTime: 0.4
   fadeColor: {r: 1, g: 0.4277855, b: 0.3726415, a: 0}
   fadeIntensity: 0.351
---- !u!114 &6962747387273880919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154936020832994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a7bbbde8ae6f234db60f26ab1a0525a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerObjects:
-  - {fileID: 0}
 --- !u!1 &1900048030966520
 GameObject:
   m_ObjectHideFlags: 0
