@@ -8,11 +8,13 @@ public class LevelLauncher : MonoBehaviour
     [SerializeField] KeyCode newGameKey = KeyCode.N;
     public int levelCount;
     int loadedLevelBuildIndex;
-    SimpleFade simpleFade;
+    SimpleFade fadeManager;
+    [SerializeField] Scene[] mazePool;
+    int currentLevel;
     
     void Start()
     {
-        simpleFade = SimpleFade.Instance;
+        fadeManager = SimpleFade.Instance;
 
         //initial check if there is anything already accidentally loaded
         if (Application.isEditor) {
@@ -26,40 +28,34 @@ public class LevelLauncher : MonoBehaviour
 				}
 			}
         }
-        //
     }
 
     // Update is called once per frame
     void Update()
     {
-        //keyboard short cut, use 0, 1, 2, ... 9 to quickly load levels
-        if (Input.GetKeyDown(newGameKey)){
-			BeginNewRecording();
+        //refresh and reload the current scene, in case any bug happens.
+        if (Input.GetKeyDown(newGameKey)){ 
 			StartCoroutine(LoadLevel(loadedLevelBuildIndex));
-		} else {
-			for (int i = 1; i <= levelCount; i++) {
-				if (Input.GetKeyDown(KeyCode.Alpha0 + i)) {
-					StartCoroutine(LoadLevel(i));
-					return;
-				}
-			}
-		}
+		} 
+
     }
+
+    //"selectLevel(int)" function is to be called by MazeManager after checking the arrowmanager
     public void SelectLevel(int levelIndex){
         StartCoroutine(LoadLevel(levelIndex));
-        CameraSwitch();
-        BeginNewRecording();
         //Debug.Log(levelName);
     }
-    void CameraSwitch(){
 
+    //levelCheck() is mostly an unload level function
+    //it is to be called before the arrowManager so that the scene goes back to empty, and arrow can appear  
+    public void LevelCheck(){
+        StartCoroutine(UnloadLevel());
+        //Debug.Log(levelName);
     }
-    void BeginNewRecording(){
 
-    }
     IEnumerator LoadLevel (int levelBuildIndex) {
 		enabled = false; // <-- this is the Unity Behavior enable bool
-        simpleFade.fadingNeeded = true;
+        fadeManager.fadingNeeded = true;
 
         //unload existing scene
 		if (loadedLevelBuildIndex > 0) {
@@ -73,6 +69,18 @@ public class LevelLauncher : MonoBehaviour
 		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelBuildIndex));
 		loadedLevelBuildIndex = levelBuildIndex;
 		enabled = true;
-        simpleFade.fadingNeeded = false;
+        fadeManager.fadingNeeded = false;
 	}
+    IEnumerator UnloadLevel(){
+        enabled = false; // <-- this is the Unity Behavior enable bool
+        fadeManager.fadingNeeded = true;
+        if (loadedLevelBuildIndex > 0) {
+			yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
+        }
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+		loadedLevelBuildIndex = 0;
+		enabled = true;
+        fadeManager.fadingNeeded = false;
+    }
+
 }
